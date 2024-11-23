@@ -4,8 +4,7 @@ phases:
   install:
     commands:
       - echo "Installing Go and dependencies..."
-      - curl -OL https://golang.org/dl/go1.20.5.linux-amd64.tar.gz  # Replace with the latest Go version
-      - tar -C /usr/local -xzf go1.20.5.linux-amd64.tar.gz
+      - apt install golang-go
       - export PATH=$PATH:/usr/local/go/bin
       - go version
 

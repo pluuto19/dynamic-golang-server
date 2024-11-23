@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Installing Go and dependencies..."
+      - curl -OL https://golang.org/dl/go1.20.5.linux-amd64.tar.gz  # Replace with the latest Go version
+      - tar -C /usr/local -xzf go1.20.5.linux-amd64.tar.gz
+      - export PATH=$PATH:/usr/local/go/bin
+      - go version
+
+  build:
+    commands:
+      - echo "Setting up cross-compilation for Windows..."
+      - export GOOS=windows  # Target Windows OS
+      - export GOARCH=amd64  # Target 64-bit architecture
+      - go build -o output/my-web-app.exe main.go
+      - echo "Build complete. Executable created: output/my-web-app.exe"
+
+artifacts:
+  files:
+    - output/my-web-app.exe  # Include the executable in the build output
+  base-directory: output     # Specify the directory containing the executable
